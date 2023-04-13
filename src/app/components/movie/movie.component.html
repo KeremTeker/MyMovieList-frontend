@@ -1,15 +1,33 @@
-<table class="table">
-    <tr *ngFor="let movie of movies">
-        <td>{{movie.movieId}}</td>
-        <td>{{movie.movieName}}</td>
-        <td>{{movie.genreId}}</td>
-        <td>{{movie.movieYear}}</td>
-        <td>{{movie.movieDuration}}</td>
-        <td>{{movie.movieMyMovieListPoint}}</td>
-        <td>{{movie.movieImdbPoint}}</td>
-        <td>{{movie.movieMyPoint}}</td>
-        <td>{{movie.movieTopic}}</td>
-        <td>{{movie.movieDirector}}</td>
-        <td>{{movie.movieListedOn}}</td>
+<div *ngIf="dataLoaded==false" class="spinner-border text-success" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div>
+<table *ngIf="dataLoaded==true" class="table">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Film adı</th>
+      <th>Tür id</th>
+      <th>Yıl</th>
+      <th>Süre</th>
+      <th>My movie list puanı</th>
+      <th>Imdb puanı</th>
+      <th>Kullanıcı puanı</th>
+      <th>Konu</th>
+      <th>Yönetmen</th>
+      <th>Listelenme sayısı</th>
     </tr>
+  </thead>
+  <tr *ngFor="let movie of movies">
+    <td>{{ movie.movieId }}</td>
+    <td>{{ movie.movieName }}</td>
+    <td>{{ movie.genreId }}</td>
+    <td>{{ movie.movieYear }}</td>
+    <td>{{ movie.movieDuration }}</td>
+    <td>{{ movie.movieMyMovieListPoint }}</td>
+    <td>{{ movie.movieImdbPoint }}</td>
+    <td>{{ movie.movieMyPoint }}</td>
+    <td>{{ movie.movieTopic }}</td>
+    <td>{{ movie.movieDirector }}</td>
+    <td>{{ movie.movieListedOn }}</td>
+  </tr>
 </table>

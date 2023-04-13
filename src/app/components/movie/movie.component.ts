@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Movie } from 'src/app/models/movie';
-import { HttpClient } from '@angular/common/http';
 import { MovieResponseModel } from 'src/app/models/movieResponseModel';
+import { MovieService } from 'src/app/services/movie.service';
 
 @Component({
   selector: 'app-movie',
@@ -10,18 +10,18 @@ import { MovieResponseModel } from 'src/app/models/movieResponseModel';
 })
 export class MovieComponent implements OnInit {
   movies: Movie[] = [];
-  apiUrl = 'https://localhost:44358/api/movies/getAll';
-  constructor(private httpClient: HttpClient) {}
+  dataLoaded =false;
+  
+  constructor(private movieService:MovieService) {}
 
   ngOnInit(): void {
     this.getMovies();
   }
 
   getMovies() {
-    this.httpClient
-      .get<MovieResponseModel>(this.apiUrl)
-      .subscribe((response) => {
-        this.movies = response.data
-      });
+  this.movieService.getMovies().subscribe(response=>{
+    this.movies = response.data
+    this.dataLoaded = true;
+})
   }
 }
